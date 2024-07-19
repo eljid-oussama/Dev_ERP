@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mangatheque_manga,Access Manga,mangatheque.model_manga,mangatheque.manga_group_user,1,1,1,1
+access_mangatheque_note,Access Donner note Manga,mangatheque.model_donner_note,mangatheque.manga_group_user,1,1,1,1
