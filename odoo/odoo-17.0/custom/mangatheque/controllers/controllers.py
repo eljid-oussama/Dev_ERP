@@ -1,8 +1,19 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request
+
+class Mangatheque(http.Controller):
+
+     @http.route('/mangatheque', auth='public')
+     def index(self, **post):
+         Manga = request.env['manga']
+         return request.render('mangatheque.mangatheque_controller', {
+             'mangas':Manga.search([])
+         },
+         **post)
 
 
-# class Mangatheque(http.Controller):
+
 #     @http.route('/mangatheque/mangatheque', auth='public')
 #     def index(self, **kw):
 #         return "Hello, world"

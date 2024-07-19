@@ -31,7 +31,8 @@ Cette application vous permet de gérer tous vos managa
         'views/templates.xml',
         'views/manga.xml',
         'wizard/note.xml',
-        'report/fiche_manga.xml'
+        'report/fiche_manga.xml',
+        'report/mangatheque.xml'
 
     ],
     # only loaded in demonstration mode
