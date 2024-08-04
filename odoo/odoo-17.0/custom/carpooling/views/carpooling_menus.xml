@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- menu principal -->
-    <menuitem id="root_menu" name="Carpooling"/>
-
-    <!-- menu fils , ici on les positionnent suivant keurs parents , mais o peut faire autrement en faisant des menu imbriquees les uns au sein des autres-->
-    <menuitem id="carpooling_menu" name="Carpools and Poolers" parent="carpooling.carpooling_menu" action="carpool_action" sequence="10"/>
-    <menuitem id="carpooling_menu_test1" name="Carpools requests" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
-    <menuitem id="carpooling_menu_test2" name="Journeys" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
-    <menuitem id="carpooling_menu_test3" name="Addresses" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
-    <menuitem id="carpooling_menu_find1" name="Find Carpools" parent="carpooling.root_menu" action="find_carpool_action" sequence="10"/>
-    <menuitem id="carpooling_menu_find2" name="Oussama help" parent="carpooling.carpooling_menu" action="action_oussama_site" sequence="10"/>
-
-    <!-- les sequences sont pour controlles le positionnelent de chaque element du menu -->
+<!--  menu principal  -->
+<menuitem id="root_menu" name="Carpooling"/>
+<!--  menu fils , ici on les positionnent suivant keurs parents , mais o peut faire autrement en faisant des menu imbriquees les uns au sein des autres -->
+<menuitem id="carpooling_menu" name="Carpools and Poolers" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
+<menuitem id="carpooling_menu_test1" name="Carpools requests" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
+<menuitem id="carpooling_menu_test2" name="Journeys" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
+<menuitem id="carpooling_menu_test3" name="Addresses" parent="carpooling.root_menu" action="carpool_action" sequence="10"/>
+<menuitem id="carpooling_menu_find1" name="Find Carpools" parent="carpooling.carpooling_menu" action="find_carpool_action" sequence="10"/>
+<menuitem id="carpooling_menu_find2" name="Oussama help" parent="carpooling.carpooling_menu" action="action_oussama_site" sequence="10"/>
+<!--  les sequences sont pour controlles le positionnelent de chaque element du menu  -->
 </odoo>
