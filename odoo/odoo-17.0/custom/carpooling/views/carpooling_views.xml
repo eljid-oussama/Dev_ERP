@@ -13,7 +13,7 @@
                         <field name="taken_seats"/>
                         <field name="is_free"/>
                         <field name="company_currency" invisible="1"/>
-                        <field name="amount_per_km" options="{'currency_field': 'company_currency'}"/>
+                        <field name="amount_per_kmy" />
                         <field name="km"/>
                         <field name="cost"  options="{'currency_field': 'company_currency'}" />
                         <field name="image" widget="image"/>

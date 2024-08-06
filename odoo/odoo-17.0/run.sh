@@ -1,3 +1,3 @@
 #!/bin/bash
-./odoo-bin --config=/mnt/c/Users/hp/Desktop/odoo/odoo-17.0/odoo.conf -u carpooling
+./odoo-bin --config=/mnt/c/Users/hp/Desktop/odoo/odoo-17.0/odoo.conf  -u carpooling
 

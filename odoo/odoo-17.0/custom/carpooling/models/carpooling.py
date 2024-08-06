@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*- 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+import logging
 
+
+_logger = logging.getLogger(__name__)
 
 class TestAbstract(models.AbstractModel):
     _name = 'test_abstract'
@@ -17,7 +20,7 @@ class Carpooling(models.Model):
     _name = 'carpooling.carpooling'  # nom de notre classe
     _description = """this a model for carpooling """  # description de la classe
     # mail.thread permet d'heriter du model responsable du mail
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'test_abstract']
     name = fields.Char(string='Name', required=True)
     taken_seats = fields.Integer(string="Taken Seats", tracking=True)
     time_of_departure = fields.Float(string="Departue time")
@@ -35,12 +38,13 @@ class Carpooling(models.Model):
     # string="Currency" : Définit l'étiquette (label) qui sera affichée dans l'interface utilisateur pour ce champ.
     # compute="_compute_company_currency" : Spécifie que la valeur de ce champ est calculée par une méthode, _compute_company_currency.
     # store=True : Indique que la valeur calculée de ce champ doit être stockée dans la base de données. Cela permet de réduire les calculs répétés et d'améliorer les performances lors des lectures de ce champ.
-    company_currency = fields.Many2one('res.currency', string="Currency", compute="_compute_company_currency",store=True)
 
     # fields.Monetary est un type de champ qui représente un montant monétaire. Il est similaire à un champ Float, mais avec une fonctionnalité supplémentaire pour gérer les devises
     # string="Amount per km" : Définit l'étiquette qui sera affichée dans l'interface utilisateur pour ce champ.
     # currency_field="company_currency" : Spécifie que ce champ monétaire doit utiliser la devise définie dans le champ company_currency. Cela permet à Odoo d'afficher correctement les valeurs monétaires avec le symbole et le format de la devise appropriée.
-    amount_per_km = fields.Monetary(string="Amount per km", currency_field="company_currency")
+    company_currency = fields.Many2one('res.currency', string="Currency", compute="_compute_company_currency",store=True)
+
+    amount_per_km = fields.Monetary(string="Amount per km en (DH)", currency_field="company_currency")
 
     # champ acceptant de l'html
     resume = fields.Html("Resume")
@@ -59,11 +63,15 @@ class Carpooling(models.Model):
     # Utilisation de << compute >> pour calculer le cout à la somme des kms
 
     km = fields.Float(string="KM")
-    cost = fields.Monetary(string="Cost", currency_field="company_currency", compute="_compute_cost")
+    cost = fields.Monetary(string="Cost en (DH)", currency_field="company_currency", compute="_compute_cost")
 
+
+    @api.depends('amount_per_km')
     def _compute_company_currency(self):
         for rec in self:
-            rec.company_currency = self.env.company.currency_id.id
+            currency_id = self.env.company.currency_id
+            _logger.info(f'Company Currency: {currency_id}')
+            rec.company_currency = currency_id
 
     # utilisation des constarins pour afficher des boites de dialoges d'erreurs
     @api.constrains('km')
