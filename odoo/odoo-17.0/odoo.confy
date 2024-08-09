@@ -1,6 +1,0 @@
-
-db_host = localhost
-db_port = 5432
-db_user = odoo
-db_password =odoo
-addons_path = /mnt/c/Users/hp/Desktop/odoo/odoo-17.0/addons,/mnt/c/Users/hp/Desktop/odoo/odoo-17.0/odoo/addons,/home/oussama/.local/share/Odoo/addons/17.0
