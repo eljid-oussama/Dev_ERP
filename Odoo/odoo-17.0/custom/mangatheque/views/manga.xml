@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="view_tree_manga" model="ir.ui.view">
+        <field name="name">Manga Tree</field>
+        <field name="model">manga</field>
+        <field name="arch" type="xml" >
+            <tree>
+                <field name="name"/>
+                <field name="etat" />
+                <field name="annee_parution"/>
+                <field name="auteur"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_form_manga" model="ir.ui.view">
+        <field name="name">Manga Form</field>
+        <field name="model">manga</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Emprunter / Rapporter" type="object" name="mon_bouton" class="btn-primary"/>
+
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="annee_parution"/>
+                            <field name="etat" />
+                            <field name="note" />
+                            <button string="Donner une note..." type="action"
+                                    name="%(action_donner_note)d"
+                                    class="btn btn-secondary"
+                                    context="{'manga_id':active_id}"
+                                    colspan="2"/>
+                        </group>
+                        <group>
+                            <field name="auteur"/>
+                            <field name="image_couverture" widget="image" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_manga" name="Mangathèque"/>
+
+    <record id="action_manga_list" model="ir.actions.act_window">
+        <field name="name">Liste des Mangas</field>
+        <field name="res_model">manga</field>
+        <field name="view_mode">tree,form</field> <!-- Correction ici -->
+    </record>
+
+
+
+    <menuitem id="menu_manga_list"
+              name="Liste des Mangas "
+              parent="menu_manga"
+              action="action_manga_list"/>
+
+    <record id="action_fiche_manga" model="ir.actions.report">
+        <field name="name">Fiche manga</field>
+        <field name="model">manga</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mangatheque.fiche_manga</field>
+        <field name="print_report_name"> 'Manga %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_manga"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

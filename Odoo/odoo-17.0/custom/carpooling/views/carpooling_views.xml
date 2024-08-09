@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue de formulaire pour Carpooling -->
+    <record id="carpooling_form_view" model="ir.ui.view">
+        <field name="name">carpooling.carpooling.form</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>Mon super form</h1>
+                    <group>
+                        <field name="name"/>
+                        <field name="taken_seats"/>
+                        <field name="is_free"/>
+                        <field name="company_currency" invisible="1"/>
+                        <field name="amount_per_km" />
+                        <field name="km"/>
+                        <field name="cost"  options="{'currency_field': 'company_currency'}" />
+                        <field name="image" widget="image"/>
+                        <field name="car_id"/>
+                        <field name="brand"/>
+                        <field name="tags_id" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page name="details" string="Détails">
+                            <group>
+                                <field name="time_of_departure"/>
+                                <field name="departure_date"/>
+                                <field name="departure_city"/>
+                                <field name="destination_city"/>
+                            </group>
+                        </page>
+                        <page name="other_information" string="Autres informations">
+                            <group>
+                                <field name="note"/>
+                                <field name="resume"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <!-- Ajout de la partie chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue Kanban pour Carpooling -->
+    <record id="carpooling_kanban_view" model="ir.ui.view">
+        <field name="name">carpooling.carpooling.kanban</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="taken_seats"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong class="oe_kanban_record_title"><span><field name="name"/></span></strong>
+                                </div>
+                                <p>Informations supplémentaires :</p>
+                                <div>
+                                    <span class="text-muted o_kanban_record_subtitle"><field name="taken_seats"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vue Tree pour Carpooling -->
+    <record id="carpooling_tree_view" model="ir.ui.view">
+        <field name="name">carpooling.carpooling.tree</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="taken_seats"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action de Fenêtre pour Carpooling -->
+    <record id="carpool_action" model="ir.actions.act_window">
+        <field name="name">Find Carpool</field>
+        <field name="res_model">carpooling.carpooling</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                Create new asset model
+            </p>
+        </field>
+    </record>
+
+    <!-- Action URL -->
+    <record model="ir.actions.act_url" id="action_oussama_site">
+        <field name="name">Oussama</field>
+        <field name="url">https://www.picaxel.com/</field>
+    </record>
+
+    <!-- Action Serveur -->
+    <record model="ir.actions.server" id="action_increment_departure_time">
+        <field name="name">Add 1 hour for departure</field>
+        <field name="model_id" ref="model_carpooling_carpooling"/>
+        <field name="binding_model_id" ref="model_carpooling_carpooling"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            records.increment_departure_time()
+        </field>
+    </record>
+</odoo>
