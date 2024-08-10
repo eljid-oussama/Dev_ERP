@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="ir_cron_add_one_to_seats_taken" model="ir.cron">
+        <!-- Création d'un enregistrement dans le modèle 'ir.cron', qui gère les tâches planifiées dans Odoo -->
+
+        <field name="name">Ajouter 1 aux Taken_seats</field>
+        <!-- Nom de la tâche planifiée, pour identification dans l'interface Odoo -->
+
+        <field name="model_id" ref="carpooling.model_carpooling_carpooling"/>
+        <!-- Référence au modèle 'Carpooling', sur lequel la tâche planifiée va s'exécuter -->
+
+        <field name="state">code</field>
+        <!-- Indique que la tâche planifiée va exécuter du code Python -->
+
+        <field name="code">model.run_cron()</field>
+        <!-- Code Python à exécuter lorsque la tâche planifiée est déclenchée. Ici, c'est la méthode 'run_cron' du modèle 'Carpooling' -->
+
+        <field name="user_id" ref="base.user_root"/>
+        <!-- Utilisateur Odoo sous lequel la tâche planifiée sera exécutée, ici c'est l'utilisateur administrateur -->
+
+        <field name="interval_number">1</field>
+        <!-- Intervalle de temps entre deux exécutions de la tâche, ici c'est 1 heure -->
+
+        <field name="interval_type">hours</field>
+        <!-- Type d'intervalle utilisé, ici en heures -->
+
+        <field name="numbercall">-1</field>
+        <!-- Nombre de fois que la tâche doit être exécutée. '-1' signifie exécution infinie jusqu'à désactivation manuelle -->
+
+        <field name="nextcall" eval="(DateTime.now() + timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <!-- Date et heure de la prochaine exécution de la tâche. Ici, elle est programmée pour deux heures après la création de la tâche -->
+    </record>
+</odoo>

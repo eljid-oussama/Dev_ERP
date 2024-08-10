@@ -74,6 +74,10 @@ class Carpooling(models.Model):
     #sequence sera utiliser pour le triage dans la vue tree
     sequence = fields.Integer()
 
+    def run_cron(self):
+        for carpool in self.search([]):  # Recherche tous les records
+            carpool.taken_seats += 1  # Incrémente taken_seats de 1
+
     @api.depends('amount_per_km')
     def _compute_company_currency(self):
         for rec in self:
@@ -110,3 +114,6 @@ class Carpooling(models.Model):
     def increment_departure_time(self):
         for rec in self:
             rec.time_of_departure += 1
+
+
+
