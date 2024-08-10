@@ -1,3 +1,3 @@
 #!/bin/bash
-./odoo-bin --config=/mnt/c/Users/hp/Desktop/odoo/odoo-17.0/odoo.conf  -u mangatheque,carpooling
+./odoo-bin --config=/mnt/c/Users/hp/Desktop/Odoo_ERP/Dev_ERP/Odoo/odoo-17.0/odoo.conf  -u carpooling
 

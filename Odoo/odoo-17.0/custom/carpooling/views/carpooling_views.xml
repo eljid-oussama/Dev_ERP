@@ -80,18 +80,46 @@
         <field name="name">carpooling.carpooling.tree</field>
         <field name="model">carpooling.carpooling</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable = 'top'>
+                <!--le handle est pour le triage manuelle , et editable est pour ajouetr un record direct dans tree sans passer par la vue form -->
+                <button icon="fa-edit" type="object" name="get_formview_action" title="Edit Record"/>                <field name="sequence"  widget="handle"/>
                 <field name="name"/>
                 <field name="taken_seats"/>
             </tree>
         </field>
     </record>
 
+
+    <!--la vue search pas besoin de l'ajouter dans ir.actions.windows que si on a plusieurs serachs views-->
+
+    <record id="carpooling_search_view" model="ir.ui.view">
+        <field name="name">carpooling.carpooling.view</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <search>
+                <!--ici on precise les variables de base de la recherche -->
+                <field name="name"/>
+                <field name="taken_seats"/>
+                <field name="name"/>
+                <!-- en bas pr creer des filters deja prets-->
+                <filter string="Taken Seats > 3" name="taken_seats_above_three" domain="[('taken_seats', '>',3)]"/>
+                <!--le group by-->
+                <group>
+                    <filter string="Taken Seats" name="taken_seats" context="{'group_by': 'taken_seats'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+
     <!-- Action de Fenêtre pour Carpooling -->
     <record id="carpool_action" model="ir.actions.act_window">
         <field name="name">Find Carpool</field>
         <field name="res_model">carpooling.carpooling</field>
         <field name="view_mode">tree,form,kanban</field>
+        <!-- field name="context">{'search_default_taken_seats_above_three':1}</field , le context sert à appliquer un filtre toujours par defaut-->
         <field name="help" type="html">
             <p class="o_view_no_content_smiling_face">
                 Create new asset model

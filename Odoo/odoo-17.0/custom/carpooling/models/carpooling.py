@@ -11,10 +11,10 @@ class TestAbstract(models.AbstractModel):
     _description = ' description de mon abstract model'
 
     # creation d'une fonction qui permet d'ajouter un suffixe au nom chaque qu'il est changé
-    @api.onchange('name')
+    @api.onchange('departure_city')
     def change_my_name(self):
         if isinstance(self.departure_city, str):
-            self.name = self.departure_city + "un suffixe"
+            self.name = self.name + "un suffixe"
         else:
             self.name = "Valeur par défaut"  # ou gérer autrement si departure_city n'est pas une chaîne
 
@@ -26,6 +26,8 @@ class Carpooling(models.Model):
     # mail.thread permet d'heriter du model responsable du mail
     #tu peux ajouter test_abstract pour pouvoir utiliser la classe abstraite 
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    #le slot _order est utiliser pour trier a bse de sequence et d'id , la vue tree
+    _order = 'sequence asc, id desc'
     name = fields.Char(string='Name', required=True)
     taken_seats = fields.Integer(string="Taken Seats", tracking=True)
     time_of_departure = fields.Float(string="Departue time")
@@ -69,7 +71,8 @@ class Carpooling(models.Model):
 
     km = fields.Float(string="KM")
     cost = fields.Monetary(string="Cost en (DH)", currency_field="company_currency", compute="_compute_cost")
-
+    #sequence sera utiliser pour le triage dans la vue tree
+    sequence = fields.Integer()
 
     @api.depends('amount_per_km')
     def _compute_company_currency(self):
