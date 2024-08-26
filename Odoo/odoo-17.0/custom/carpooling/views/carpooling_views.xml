@@ -141,8 +141,9 @@
         <field name="state">code</field>
         <field name="code">
             if records:
-            <!--acrion= c'est optionnel , c'est juste dans le cas ou on veut que l'action ouvre un pop-up -->
             action = records.increment_departure_time() <!--celle-ci est dfinie dans le module carpooling-->
+            <!--acrion= c'est optionnel , c'est juste dans le cas ou on veut que l'action ouvre un pop-up -->
+
         </field>
     </record>
 </odoo>

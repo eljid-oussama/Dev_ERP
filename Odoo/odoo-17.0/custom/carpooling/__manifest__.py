@@ -34,6 +34,9 @@
         'wizard/carpooling_wizard_view.xml',
         'views/carpooling_menus.xml',
         'data/ir_cron.xml',
+
+
+        'reports/car_report.xml',
         
     ],
     # only loaded in demonstration mode
