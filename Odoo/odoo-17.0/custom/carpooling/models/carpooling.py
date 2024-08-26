@@ -112,8 +112,17 @@ class Carpooling(models.Model):
             rec.cost = rec.amount_per_km * rec.km
 
     def increment_departure_time(self):
-        for rec in self:
-            rec.time_of_departure += 1
+       # for rec in self:
+        #    rec.time_of_departure += 1
+
+       #la partie en bas est reponsable de l'ouverture du pop-up
+        return {
+            'type' : 'ir.actions.act_window',
+            'name' : '"Increment departure time "',
+            'view_mode': 'form',
+            'res_model' : 'carpooling_wizard',
+            'target' : 'new', #new pour une nouvelle fenetre et current pour remplacer la page actuelle
+        }
 
 
 
