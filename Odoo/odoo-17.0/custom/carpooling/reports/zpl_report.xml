@@ -9,6 +9,7 @@
         <field name="binding_type">report</field>
     </record>
 
+    <!--les code au sein de foreach sert à les passer au Labelary pour generer l'etiquette -->
     <template id="template_car_travelling_real">
         <t t-foreach="docs" t-as="doc">
             ^F0220, 50^FD<t t-esc="doc.name" />^FS
