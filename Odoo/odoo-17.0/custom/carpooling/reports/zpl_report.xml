@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="report_zpl_car" model="ir.actions.report">
+        <field name="name">Car ZPL report</field> <!--le nom afficher lors du print -->
+        <field name="model">carpooling.carpooling</field>
+        <field name="report_type">qweb-text</field> <!--format "extension" d'affichage du rapport-->
+        <field name="report_name">carpooling.template_car_travelling_real</field> <!-- report_name est gere par template ci-dessous-->
+        <field name="binding_model_id" ref="carpooling.model_carpooling_carpooling"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="template_car_travelling_real">
+        <t t-foreach="docs" t-as="doc">
+            ^F0220, 50^FD<t t-esc="doc.name" />^FS
+            ^F0100, 550^BC^FD12345678^FS
+        </t>
+    </template>
+
+</odoo>

@@ -37,6 +37,7 @@
 
 
         'reports/car_report.xml',
+        'reports/zpl_report.xml',
         
     ],
     # only loaded in demonstration mode
