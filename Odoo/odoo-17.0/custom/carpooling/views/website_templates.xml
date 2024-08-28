@@ -5,9 +5,16 @@
         <t t-call="web.frontend_layout"> <!--le t-call c pour la recuperation des layouts d'odoo sur notre page web-->
             <div class="p-4">
                 <h1>Hello from Carpooling Website view (its me oussama )</h1>
-                <t t-esc="carpoolings"/> <!--c pour charger les donnees dans notre page -->
+                <t t-foreach="carpoolings" t-as="carpooling">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" t-esc="carpooling.name"/>
+                            <p t-esc="carpooling.taken_seats"/>
+                            <p t-esc="carpooling.departure_date"/>
+                        </div>
+                    </div>
+                </t>
             </div>
         </t>
-
     </template>
 </odoo>
