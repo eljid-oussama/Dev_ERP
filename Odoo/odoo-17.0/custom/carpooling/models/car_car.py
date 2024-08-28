@@ -9,3 +9,12 @@ class Car(models.Model):
 
     brand = fields.Char(string="Marques")
 
+
+class Bike(models.Model):
+    _name = 'car.bike'
+    _inherit = ['car.car'] #l'heritage
+
+    bike_type = fields.Selection([('sport', 'Sport'),('citadine', 'Citadine'),('offroad', 'OffRoad')], string ="Type")
+
+
+

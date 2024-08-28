@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <template id="carpooling_website">
+        <t t-call="web.frontend_layout"> <!--le t-call c pour la recuperation des layouts d'odoo sur notre page web-->
+            <div class="p-4">
+                <h1>Hello from Carpooling Website view (its me oussama )</h1>
+                <t t-esc="carpoolings"/> <!--c pour charger les donnees dans notre page -->
+            </div>
+        </t>
+
+    </template>
+</odoo>

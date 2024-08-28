@@ -23,7 +23,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale'],
+    'depends': ['base', 'sale', 'contacts'],
 
     # always loaded
     'data': [
@@ -32,8 +32,10 @@
         'views/views.xml',
         'views/templates.xml',
         'views/carpooling_views.xml',
+        'views/res_partner.xml',
         'wizard/carpooling_wizard_view.xml',
         'views/carpooling_menus.xml',
+        'views/website_templates.xml',
         'data/ir_cron.xml',
 
 
