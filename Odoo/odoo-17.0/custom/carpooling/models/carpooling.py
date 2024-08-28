@@ -74,6 +74,13 @@ class Carpooling(models.Model):
     #sequence sera utiliser pour le triage dans la vue tree
     sequence = fields.Integer()
 
+    #cette variable va sevir pour gerer l'accés aux champs
+    is_administrator = fields.Boolean("Is administrator" , compute="_compute_is_administrator")
+
+
+    def _compute_is_administrator(self):
+        for rec in self :
+            rec.is_administrator = self.env.user.has_group('carpooling.group_carpooling_admin')
     def run_cron(self):
         for carpool in self.search([]):  # Recherche tous les records
             carpool.taken_seats += 1  # Incrémente taken_seats de 1

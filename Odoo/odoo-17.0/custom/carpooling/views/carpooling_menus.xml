@@ -9,4 +9,5 @@
 <menuitem id="carpooling_menu_find1" name="Find Carpools" parent="carpooling.carpooling_menu" action="find_carpool_action" sequence="10"/>
 <menuitem id="carpooling_menu_find2" name="Oussama help" parent="carpooling.carpooling_menu" action="action_oussama_site" sequence="10"/>
 <!--  les sequences sont pour controlles le positionnelent de chaque element du menu  -->
+    <!--pour les menu on peux ajouter les groupes , ca sera pareil appliquer à un champ specifique dans carpooling_views en ajoutant groupe=base.groupe ...-->
 </odoo>
