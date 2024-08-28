@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="carpooling_record_rules_example" model="ir.rule">
+        <field name="name">Carpooling Record Rules Example</field>
+        <field name="model_id" ref="carpooling.model_carpooling_carpooling"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="domain_force">[('is_free','=',True)]</field> <!--la regle ici est que tous les enregistrements doivent avoir is_free=True -->
+    </record>
+</odoo>
