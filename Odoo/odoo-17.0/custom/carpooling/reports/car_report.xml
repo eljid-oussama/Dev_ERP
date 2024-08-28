@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="report_car_travelling" model="ir.actions.report">
-        <field name="name">Car Travelling</field> <!--le nom afficher lors du print -->
-        <field name="model">carpooling.carpooling</field>
-        <field name="report_type">qweb-pdf</field> <!--format "extension" d'affichage du rapport-->
-        <field name="report_name">carpooling.template_car_travelling</field> <!-- report_name est gere par template ci-dessous-->
+        <field name="name">Car Travelling</field> <!-- Nom affiché lors de l'impression -->
+        <field name="model">carpooling.carpooling</field> <!-- Modèle lié au rapport -->
+        <field name="report_type">qweb-pdf</field> <!-- Format du rapport -->
+        <field name="report_name">carpooling.template_car_travelling</field> <!-- Nom du template utilisé pour le rapport -->
         <field name="binding_model_id" ref="carpooling.model_carpooling_carpooling"/>
         <field name="binding_type">report</field>
     </record>
 
     <template id="template_car_travelling">
-       <t t-call="web.html_container">
-           <t t-foreach=" docs" t-as="doc">
-               <t t-call="carpooling.template_car_travelling_real"/> <!-- ceci c'est pour que les traductions soient prises en compte-->
-           </t>
-       </t>
-
-    </template>
-
-    <!--le template ci dessous est pour la prise en compte de la traduction lors de le generation des rapports-->
-    <template id="template_car_travelling_real">
-        <t t-call="web.external_layout">
-            <p>Hello World !</p>
-            <p t-esc="doc.name + ' '  'LE NOM' "/> <!--c'est des champs à à mettre sur le rapport -->
-            <p t-field="doc.name" />
-            <p t-esc="doc.car_id.name"/>
-            <p t-if="doc.states == 'new'">NEW</p>
-            <p t-else ="">OLD</p> <!--gestion de boucle en dessous-->
-            <t t-foreach="doc.tags_id"  t-as="tag" >
-                <p t-esc=" tag.name" />
-            </t>
-
+        <t t-call="web.html_container">
+            <!-- Boucle pour chaque document (objet sélectionné) -->
+            <t t-foreach="docs" t-as="doc">
+                <!-- Appel du layout externe pour chaque document -->
+                <t t-call="web.external_layout">
+                    <p>Hello World !</p>
+                    <p t-esc="doc.name + ' ' + 'LE NOM' "/> <!-- Exemple de champs affichés -->
+                    <p t-field="doc.name" />
+                    <p t-esc="doc.car_id.name"/>
+                    <!-- Vérification de l'état et affichage en conséquence -->
+                    <p t-if="doc.states == 'new'">NEW</p>
+                    <p t-else="">OLD</p>
+                    <!-- Boucle pour les tags -->
+                    <t t-foreach="doc.tags_id" t-as="tag">
+                        <p t-esc="tag.name" />
+                    </t>
+                </t> <!-- Fin du layout externe -->
+            </t> <!-- Fin de la boucle sur les documents -->
         </t>
     </template>
 </odoo>
