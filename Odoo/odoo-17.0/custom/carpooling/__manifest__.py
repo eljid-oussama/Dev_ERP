@@ -36,6 +36,7 @@
         'views/res_partner.xml',
         'wizard/carpooling_wizard_view.xml',
         'views/carpooling_menus.xml',
+        'views/sale_order_views.xml',
         'views/website_templates.xml',
         'data/ir_cron.xml',
 
