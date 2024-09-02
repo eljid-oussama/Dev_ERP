@@ -32,6 +32,8 @@ class Carpooling(models.Model):
     taken_seats = fields.Integer(string="Taken Seats", tracking=True)
     time_of_departure = fields.Float(string="Departue time")
     departure_date = fields.Date(string="Departure date")
+    departure_datetime = fields.Datetime(string='Departure datetime')
+    terminus_datetime = fields.Datetime(string = 'Terminus datetime')
     note = fields.Text('note')
     is_free = fields.Boolean('Est disponible')
     states = [('new', 'New'), ('available', 'Has seats available'), ('full', 'Full')]

@@ -112,6 +112,19 @@
         </field>
     </record>
 
+    <!--on ajoute calendar dans carpool_action-->
+    <record id="carpooling_calendar_view" model="ir.ui.view">
+        <field name="name">carpooling.calendar.view</field>
+        <field name="model">carpooling.carpooling</field>
+        <field name="arch" type="xml">
+            <calendar date_start="departure_datetime"  date_stop="terminus_datetime" string="Calendar Carpooling">
+                <field name="name"/>
+                <field name="km"/>
+            </calendar>
+        </field>
+
+    </record>
+
 
 
 
@@ -119,7 +132,7 @@
     <record id="carpool_action" model="ir.actions.act_window">
         <field name="name">Find Carpool</field>
         <field name="res_model">carpooling.carpooling</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form,kanban,calendar</field>
         <!-- field name="context">{'search_default_taken_seats_above_three':1}</field , le context sert à appliquer un filtre toujours par defaut-->
         <field name="help" type="html">
             <p class="o_view_no_content_smiling_face">
