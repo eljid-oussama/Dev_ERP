@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- ce fichier est dedier au positionnment  du champ is_jidden dans l'affichage de la vue sale.order-->
+    <record id="view_order_form_template" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="priority">98</field>
+        <field name="inherit_id" ref="product.template.product.form"/>
+        <field name="arch" type="xml">
+            <!--ici on a bien positionner le champ is_hidden-->
+                <field name="blacklist_countries_ids"/>
+        </field>
+    </record>
+</odoo>

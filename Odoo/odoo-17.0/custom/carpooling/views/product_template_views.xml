@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_template_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Insertion des champs blacklist avant le champ "barcode" -->
+            <field name="barcode" position="before">
+                <field name="blacklist_countries_ids"/>
+                <field name="blacklist_contacts_ids"/>
+            </field>
+        </field>
+    </record>
+</odoo>

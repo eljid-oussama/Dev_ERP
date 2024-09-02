@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     blacklist_countries_ids = fields.Many2many('res.country', string="Blacklist Countries")
-    blacklist_countries_ids = fields.Many2many('res.partner', string="Blacklist Contacts")
+    blacklist_contacts_ids = fields.Many2many('res.partner', string="Blacklist Contacts")
 
 #fonction appele a la creation d'un produit , il genere un numero random qui sera le code barre
     def _create_new_barcode(self):
