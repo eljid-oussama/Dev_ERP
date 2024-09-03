@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_survey_view_form" model="ir.ui.view">
+        <field name="model">survey.survey</field>
+        <field name="priority">98</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='users_can_go_back']" position="after">
+                <field name="campaign_id"/>
+                <field name="website_survey_id"/>
+                <field name="is_creating_lead"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

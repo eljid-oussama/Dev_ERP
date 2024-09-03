@@ -23,7 +23,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale','product', 'contacts'],
+    'depends': ['base', 'sale','product', 'contacts', 'survey'],
 
     # always loaded
     'data': [
@@ -39,6 +39,7 @@
         'views/sale_order_views.xml',
         'views/product_template_views.xml',
         'views/website_templates.xml',
+        'views/survey_survey_views.xml',
         'data/ir_cron.xml',
 
 
