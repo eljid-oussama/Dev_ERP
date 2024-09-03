@@ -11,5 +11,6 @@ from . import survey_survey
 from . import survey_user_input
 from . import survey_user_input_1
 from . import report_template_sale_order
+from . import sale_order
 
 
